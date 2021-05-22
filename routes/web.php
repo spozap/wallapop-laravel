@@ -13,14 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-})->name('main');
+Route::get('/', 'ProductController@index_all')->name('main');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum' , 'verified'])->get('/create' , 'ProductFormController@product_form')->name('products.create');
+Route::middleware(['auth:sanctum' , 'verified'])->get('/create' , 'ProductController@product_form')->name('products.create');
 
-Route::middleware(['auth:sanctum' , 'verified'])->post('/create' , 'ProductFormController@save_product')->name('products.create.post');
+Route::middleware(['auth:sanctum' , 'verified'])->post('/create' , 'ProductController@save_product')->name('products.create.post');

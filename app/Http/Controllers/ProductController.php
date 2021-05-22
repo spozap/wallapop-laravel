@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-class ProductFormController extends Controller
+class ProductController extends Controller
 {
     
     public function product_form() {
@@ -37,6 +37,13 @@ class ProductFormController extends Controller
 
         $product->save();
         return redirect()->route('dashboard');
+
+    }
+
+    public function index_all() {
+
+        $products = Product::all();
+        return view('main')->with('products' , $products);
 
     }
 
