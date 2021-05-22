@@ -30,6 +30,7 @@
                 <div class="px-6 py-4 d-block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <a href="{{ url('/create') }}" class="ml-4 text-sm text-gray-700 underline">Upload product</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
