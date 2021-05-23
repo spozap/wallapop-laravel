@@ -47,4 +47,11 @@ class ProductController extends Controller
 
     }
 
+    public function index_one($id) {
+
+        $product = Product::where('id' , $id )->first();
+        return view('details')->with('product' , $product); 
+
+    }
+
 }

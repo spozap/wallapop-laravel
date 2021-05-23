@@ -19,6 +19,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/detalles/{id}' , 'ProductController@index_one')->name('products.index');
+
 Route::middleware(['auth:sanctum' , 'verified'])->get('/create' , 'ProductController@product_form')->name('products.create');
 
 Route::middleware(['auth:sanctum' , 'verified'])->post('/create' , 'ProductController@save_product')->name('products.create.post');
