@@ -12,6 +12,7 @@
                         @method('delete')
                         <button type="submit"> Delete </button>
                     </form>
+                    <a class="btn btn-primary" href="{{ route('products.edit.form' , [ 'id' => $product->id]) }}" role="button">Update</a>
                 </div>
             </div>
             @endforeach

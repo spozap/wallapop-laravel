@@ -36,7 +36,7 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         $product->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('products.index.user');
 
     }
 
@@ -65,6 +65,25 @@ class ProductController extends Controller
 
         Product::whereId($id)->delete();
         return $this->index_user();
+    }
+
+    public function update_form($id) {
+
+        $product = Product::where('id' , $id )->first();
+        return view('edit' , ['product' => $product]);
+
+    }
+
+    public function update_product(Request $request , $id) {
+
+     $product = Product::find($id);   
+     $product->name = $request->name;
+     $product->description = $request->desc;
+     $product->price = $request->price;
+     
+    $product->save();
+
+     return redirect()->route('products.index' , $product->id);
     }
 
 }
