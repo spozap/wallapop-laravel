@@ -29,6 +29,7 @@
             @if (Route::has('login'))
                 <div class="px-6 py-4 d-block">
                     @auth
+                        <a href="{{ route('main') }}" class="ml-4 text-sm text-gray-700 underline">Main</a>
                         <a href="{{ url('/create') }}" class="ml-4 text-sm text-gray-700 underline">Upload product</a>
                         <a href="{{ route('products.index.user') }}" class="ml-4 text-sm text-gray-700 underline">Manage products</a>
                     @else

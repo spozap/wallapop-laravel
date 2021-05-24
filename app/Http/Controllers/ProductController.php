@@ -40,9 +40,36 @@ class ProductController extends Controller
 
     }
 
-    public function index_all() {
+    public function index_all(Request $request) {
 
-        $products = Product::all();
+        $filter = [];
+
+        if ($request->name) {
+
+            $filter[] = ['name' , 'like' , '%'.$request->name.'%'];
+
+        }
+
+
+        if ($request->order && count($filter) === 0) {
+
+            $products = Product::orderBy('price' , $request->order )->get();
+
+        } else if ($request->order && count($filter) > 0) {
+
+            $products = Product::where($filter)->orderBy('price' , $request->order)->get();
+
+        } else {
+
+            $products = Product::where($filter)->get();
+
+        }
+
+
+        if (count($filter) === 0 && !($request->order)) {
+            $products = Product::all();
+        }
+
         return view('main')->with('products' , $products);
 
     }
