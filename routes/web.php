@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'ProductController@index_all')->name('main');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Route::get('/detalles/{id}' , 'ProductController@index_one')->name('products.index');
+
+Route::get('/manage' , 'ProductController@index_user')->name('products.index.user');
+
+Route::middleware(['auth:sanctum' , 'verified'])->delete('/delete/{id}' , 'ProductController@delete')->name('products.delete');
 
 Route::middleware(['auth:sanctum' , 'verified'])->get('/create' , 'ProductController@product_form')->name('products.create');
 

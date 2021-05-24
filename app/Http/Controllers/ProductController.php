@@ -54,4 +54,17 @@ class ProductController extends Controller
 
     }
 
+    public function index_user() {
+
+        $products = Product::where('user_id' , Auth::id())->get();
+        return view('manage')->with('products' , $products);
+
+    }
+
+    public function delete($id) {
+
+        Product::whereId($id)->delete();
+        return $this->index_user();
+    }
+
 }
