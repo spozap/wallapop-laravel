@@ -38,3 +38,5 @@ Route::middleware(['auth:sanctum' , 'verified'])->get('/edit/{id}' , 'ProductCon
 Route::middleware(['auth:sanctum' , 'verified'])->get('/category/edit/{id}' , 'CategoryController@update_form')->name('category.edit.form');
 
 Route::middleware(['auth:sanctum' , 'verified'])->put('/category/edit/{id}' , 'CategoryController@update_cat')->name('category.put');
+
+Route::middleware(['auth:sanctum' , 'verified'])->delete('category/delete/{id}' , 'CategoryController@delete')->name('category.delete');

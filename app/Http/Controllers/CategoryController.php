@@ -40,6 +40,7 @@ class CategoryController extends Controller
 
     }
 
+
     public function update_cat($id , Request $request) {
 
         $category = Category::find($id);
@@ -52,6 +53,13 @@ class CategoryController extends Controller
 
         $category->save();
         return redirect()->route('category.manage');
+
+    }
+
+    public function delete($id) {
+
+        Category::whereId($id)->delete();
+        return $this->index();
 
     }
 }
