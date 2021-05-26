@@ -21,6 +21,13 @@ class CategoryController extends Controller
         $category->name = $request->name;
 
         $category->save();
+        return redirect()->route('category.manage');
 
+    }
+
+    public function index() {
+
+        $categories = Category::all();
+        return view('mngcategory' , ['categories' => $categories]);
     }
 }

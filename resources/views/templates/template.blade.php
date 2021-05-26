@@ -33,6 +33,7 @@
                         <a href="{{ url('/create') }}" class="ml-4 text-sm text-gray-700 underline">Upload product</a>
                         <a href="{{ route('products.index.user') }}" class="ml-4 text-sm text-gray-700 underline">Manage products</a>
                         <a href="{{ route('category.create.form') }}" class="ml-4 text-sm text-gray-700 underline"> Create category </a>
+                        <a href="{{ route('category.manage') }}" class="ml-4 text-sm text-gray-700 underline"> Manage categories </a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
