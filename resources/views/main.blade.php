@@ -15,6 +15,14 @@
                         <option value="desc"> Price desc </option>
                     </select>
                 </div>
+                <div class="form-group col-6">
+                    <label for="exampleInputPassword1">Categories</label>
+                    <select class="form-select" name="category" aria-label="Default value">
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}"> {{ $category->name }} </>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary m-2">Search</button>
         </form>    

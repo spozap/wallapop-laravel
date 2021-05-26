@@ -26,6 +26,14 @@
             <small> Description is required </small>
             @enderror
         </div>
+        <div class="form-group mb-2">
+            <label for="exampleInputPassword1">Categories</label>
+            <select class="form-select" name="category" aria-label="Default value">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}"> {{ $category->name }} </>
+                @endforeach
+            </select>
+        </div>
         <div class="custom-file">
             <input type="file" name="image" id="image">
             <label class="custom-file-label">Seleccionar Archivo</label>

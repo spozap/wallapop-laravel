@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -12,7 +13,10 @@ class ProductController extends Controller
 {
     
     public function product_form() {
-        return view('create');
+
+        $categories = Category::all();
+
+        return view('create')->with('categories' , $categories);
     }
 
     public function save_product(Request $request) {
@@ -20,6 +24,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|alpha_num',
             'price' => 'required|integer|min:0',
+            'category' => 'required',
             'desc' => 'required'
         ]);
 
@@ -30,7 +35,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->user_id = Auth::id();
         $product->image = "AASAD";
-        $product->category_id = 1;
+        $product->category_id = $request->category;
         $product->name = $request->name;
         $product->description = $request->desc;
         $product->price = $request->price;
@@ -50,6 +55,12 @@ class ProductController extends Controller
 
         }
 
+        if ($request->category) {
+
+            $filter[] = ['category_id' , '=' , $request->category];
+
+        }
+
 
         if ($request->order && count($filter) === 0) {
 
@@ -65,11 +76,13 @@ class ProductController extends Controller
 
         }
 
-        if (count($filter) === 0 && !($request->order)) {
+        if (count($filter) === 0 && !($request->order) && !($request->category)) {
             $products = Product::paginate(5);
         }
 
-        return view('main')->with('products' , $products);
+        $categories = Category::all();
+
+        return view('main')->with('products' , $products)->with('categories' , $categories);
 
     }
 
