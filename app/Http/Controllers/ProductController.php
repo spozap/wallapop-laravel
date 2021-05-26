@@ -65,9 +65,8 @@ class ProductController extends Controller
 
         }
 
-
         if (count($filter) === 0 && !($request->order)) {
-            $products = Product::all();
+            $products = Product::paginate(5);
         }
 
         return view('main')->with('products' , $products);
