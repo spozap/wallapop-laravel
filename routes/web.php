@@ -27,4 +27,8 @@ Route::middleware(['auth:sanctum' , 'verified'])->post('/create' , 'ProductContr
 
 Route::middleware(['auth:sanctum' , 'verified'])->put('/edit/{id}' , 'ProductController@update_product')->name('products.put');
 
+Route::middleware(['auth:sanctum' , 'verified'])->get('/category/create', 'CategoryController@create_form')->name('category.create.form');
+
+Route::middleware(['auth:sanctum' , 'verified'])->post('/category/create' , 'CategoryController@create')->name('category.create');
+
 Route::middleware(['auth:sanctum' , 'verified'])->get('/edit/{id}' , 'ProductController@update_form')->name('products.edit.form');
