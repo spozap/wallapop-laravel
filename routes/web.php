@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['auth:sanctum' , 'verified'])->get('/dashboard' , function() {
+    return view('dashboard');
+})->name('dashboard');
+
+
 Route::get('/', 'ProductController@index_all')->name('main');
 
 Route::get('/detalles/{id}' , 'ProductController@index_one')->name('products.index');
