@@ -29,7 +29,7 @@ class ProductController extends Controller
             'img' => 'required|image'
         ]);
         
-            $toStore = "AA";
+        $toStore = "AA";
 
         if ($request->hasFile('img')) {
 
@@ -120,8 +120,12 @@ class ProductController extends Controller
     public function update_form($id) {
 
         $product = Product::where('id' , $id )->first();
-        return view('edit' , ['product' => $product]);
 
+        if ($product->user_id === Auth::id()) {
+            return view('edit' , ['product' => $product]);
+        }
+
+        return redirect()->route('products.index.user');
     }
 
     public function update_product(Request $request , $id) {
