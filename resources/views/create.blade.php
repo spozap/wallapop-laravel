@@ -3,7 +3,7 @@
 
         <p class="h1 text-center">Upload product</p>
 
-        <form action="{{route('products.create.post')}}" method="POST">
+        <form action="{{route('products.create.post')}}" method="POST" enctype="multipart/form-data">
         @csrf  
         <div class="form-group mb-2">
             <label for="name">Product name</label>
@@ -35,7 +35,7 @@
             </select>
         </div>
         <div class="custom-file">
-            <input type="file" name="image" id="image">
+            <input type="file" name="img">
             <label class="custom-file-label">Seleccionar Archivo</label>
             @error('image')
             <small> An image is required </small>

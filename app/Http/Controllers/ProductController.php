@@ -25,16 +25,27 @@ class ProductController extends Controller
             'name' => 'required|alpha_num',
             'price' => 'required|integer|min:0',
             'category' => 'required',
-            'desc' => 'required'
+            'desc' => 'required',
+            'img' => 'required|image'
         ]);
+        
+            $toStore = "AA";
 
-        //$img = $request->file('image');
-        //$extension = $cover->getClientOriginalExtension();
-        //Storage::disk('public')->put($cover->)
+        if ($request->hasFile('img')) {
+
+            $image = $request->file('img');
+
+            $filename = $image->getClientOriginalName();
+
+            $toStore = time().'_' . $filename;
+
+            $image->move('uploads' , $toStore);
+        }
+
 
         $product = new Product;
         $product->user_id = Auth::id();
-        $product->image = "AASAD";
+        $product->image = $toStore;
         $product->category_id = $request->category;
         $product->name = $request->name;
         $product->description = $request->desc;

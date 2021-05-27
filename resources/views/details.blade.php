@@ -8,7 +8,7 @@
                 <p class="h2 col-6 d-block text-center"> Product name: {{ $product->name }} </p>
                 <p class="h2 col-6 d-block text-center"> Price: {{ $product->price }}  </p>
                 <p class="h2 col-12 d-block text-center"> Description: </br> {{ $product->description }} </p>
-                <img class="col-12" src="{{ $product->image }}" alt="Alt product image">
+                <img class="col-12" src="{{ asset('uploads/') }}/{{$product->image}}" alt="Alt product image">
             </div>
         @endif
     </div>
